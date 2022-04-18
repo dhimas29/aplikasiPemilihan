@@ -1,3 +1,3 @@
-# APLIKASI REKRUT
+# APLIKASI PEMILIHAN
 
 Pembuatan Aplikasi Sederhana Untuk Melakukan Pemilihan

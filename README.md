@@ -1,3 +1,3 @@
 # APLIKASI REKRUT
 
-Pembuatan Aplikasi Sederhana Untuk Melakukan Perekrutan
+Pembuatan Aplikasi Sederhana Untuk Melakukan Pemilihan

@@ -26,11 +26,25 @@
                     <div class="card">
                         <!-- /.card-header -->
                         <div class="card-header">
-                            <h3 class="card-title">GAP</h3>
+                            <h3 class="card-title">Perhitungan</h3>
                         </div>
                         <div class="card-body">
                             <form action="?folder=perhitungan&page=perhitungan&actions=proses" method="post">
+
                                 <div class="form-group row">
+                                    <label for="kelas" class="col-sm-4 col-form-label">Lomba</label>
+                                    <div class="col-sm-8">
+                                        <select name="kode_seleksi" id="" required class="form-control">
+                                            <option value="" selected disabled>--Pilih--</option>
+                                            <?php
+                                            foreach ($koneksi->query("select kode_seleksi,tanggal,kriteria from tbl_seleksi group by tanggal desc") as $key => $value) { ?>
+                                                <option value="<?= $value['kode_seleksi'] ?>"><?= $value['kriteria'] ?> ( <?= date('d M Y', strtotime($value['tanggal'])); ?> )</option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="form-group row">
                                     <label for="kelas" class="col-sm-4 col-form-label">Kriteria Lomba</label>
                                     <div class="col-sm-8">
                                         <select name="kriteria" id="" required class="form-control">
@@ -53,7 +67,7 @@
                                             <?php } ?>
                                         </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 <button type="submit" class="btn btn-warning">Proses</button>
                             </form>
                         </div>

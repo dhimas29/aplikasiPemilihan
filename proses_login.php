@@ -28,6 +28,32 @@
                     window.location.href = 'index_admin.php'
             })
          </script>";
+        } else if ($fetch['level_user'] == 'Guru') {
+            $_SESSION['level'] = $fetch['level_user'];
+            $_SESSION['id'] = $fetch['id'];
+            $_SESSION['nama'] = $fetch['username'];
+            echo "<script>
+            Swal.fire({
+                title: 'Login Berhasil!',
+                text: 'Selamat Datang.',
+                icon: 'success'
+            }).then((result) => {
+                    window.location.href = 'index_admin.php'
+            })
+         </script>";
+        } else if ($fetch['level_user'] == 'Kepala') {
+            $_SESSION['level'] = $fetch['level_user'];
+            $_SESSION['id'] = $fetch['id'];
+            $_SESSION['nama'] = $fetch['username'];
+            echo "<script>
+            Swal.fire({
+                title: 'Login Berhasil!',
+                text: 'Selamat Datang.',
+                icon: 'success'
+            }).then((result) => {
+                    window.location.href = 'index_admin.php'
+            })
+         </script>";
         } else {
             $_SESSION['level'] = $fetch['level_user'];
             $_SESSION['id'] = $fetch['id'];

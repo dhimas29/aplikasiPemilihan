@@ -1,3 +1,9 @@
+<?php
+// $cekSeleksi = $koneksi->query("select * from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]'")->fetch();
+// $tbl_seleksi = $cekSeleksi['kode_seleksi'];
+
+$tbl_seleksi = $_POST['kode_seleksi'];
+?>
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -38,7 +44,7 @@
                                     <thead>
                                         <tr>
                                             <?php
-                                            foreach ($koneksi->query("select * from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]'") as $key => $value) {
+                                            foreach ($koneksi->query("select * from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]'") as $key => $value) {
                                                 $dat = preg_replace("/_/", " ", $value['subkriteria']);
                                             ?>
                                                 <th>
@@ -50,7 +56,7 @@
                                     <tbody>
                                         <tr>
                                             <?php
-                                            foreach ($koneksi->query("select * from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]'") as $key => $value) { ?>
+                                            foreach ($koneksi->query("select * from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]'") as $key => $value) { ?>
                                                 <td>
                                                     <p><?= $value['bobot_subkriteria']; ?></p>
                                                 </td>
@@ -71,11 +77,6 @@
                                     <h3 data-toggle="tab" href="#pembobotan_gap" class="nav-link card-title mt-2">Pembobotan GAP</h3>
                                     <h3 data-toggle="tab" href="#perhitungan_factor" class="nav-link card-title mt-2">Perhitungan NCF dan NSF</h3>
                                 </li>
-                                <!-- <li class="nav-item">
-                                    <a data-toggle="modal" data-target="#infoNilai">
-                                        <h3 class="card-title float-right btn-warning btn btn-sm mt-2">! Info Pemetaan Nilai</h3>
-                                    </a>
-                                </li> -->
                             </ul>
 
                         </div>
@@ -89,14 +90,14 @@
                                                 <th rowspan="2">No</th>
                                                 <th rowspan="2">Nama</th>
                                                 <?php $conNilai = $koneksi->query("select count(*) 
-                                        from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]'")->fetchColumn(); ?>
+                                        from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]'")->fetchColumn(); ?>
                                                 <th colspan="<?= $conNilai ?>">Nilai</th>
                                             </tr>
                                             <tr>
                                                 <?php
                                                 $namaTab1 = '';
                                                 $namaTabSum1 = '';
-                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]'") as $key => $value) {
+                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]'") as $key => $value) {
                                                     $dat1 = preg_replace("/_/", " ", $value['subkriteria']);
                                                     $namaTab1 .=  "sum(" . $value['subkriteria'] . ") as " . $value['subkriteria'] . ",";
                                                     $arrayTab1[] = $value['subkriteria'];
@@ -110,9 +111,12 @@
                                         <tbody>
                                             <?php
                                             $nomor = 1;
-                                            foreach ($koneksi->query('select ' . $namaTab1 . ',nama,count(id_siswa) as conId from tbl_raport 
+                                            foreach ($koneksi->query('select ' . $namaTab1 . ',nama,count(tbl_raport.id_siswa) as conId from tbl_raport 
                                     join tbl_siswa on tbl_siswa.id = tbl_raport.id_siswa
-                                    group by id_siswa') as $key => $value) { ?>
+                                    join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                    join tbl_seleksi_proses on tbl_seleksi_proses.id_siswa = tbl_siswa.id
+                                    where tbl_seleksi_proses.ket = "Mengikuti" and tbl_seleksi_proses.kode_seleksi="' . $tbl_seleksi . '" and (tbl_kelas.kelas = 4 || tbl_kelas.kelas = 5) 
+                                    group by tbl_raport.id_siswa') as $key => $value) { ?>
                                                 <tr>
                                                     <td style="width: 10px;"><?= $nomor++; ?></td>
                                                     <td><?= $value['nama'] ?></td>
@@ -149,14 +153,14 @@
                                                 <th rowspan="2">No</th>
                                                 <th rowspan="2">Nama</th>
                                                 <?php $conNilai = $koneksi->query("select count(*) 
-                                        from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]'")->fetchColumn(); ?>
+                                        from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]'")->fetchColumn(); ?>
                                                 <th colspan="<?= $conNilai ?>">Nilai</th>
                                             </tr>
                                             <tr>
                                                 <?php
                                                 $namaTab2 = '';
                                                 $namaTabSum2 = '';
-                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]'") as $key => $value) {
+                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]'") as $key => $value) {
                                                     $dat2 = preg_replace("/_/", " ", $value['subkriteria']);
                                                     $namaTab2 .=  "sum(" . $value['subkriteria'] . ") as " . $value['subkriteria'] . ",";
                                                     $arrayTab2[] = $value['subkriteria'];
@@ -171,9 +175,12 @@
                                         <tbody>
                                             <?php
                                             $nomor = 1;
-                                            foreach ($koneksi->query('select ' . $namaTab2 . ',nama,count(id_siswa) as conId from tbl_raport 
+                                            foreach ($koneksi->query('select ' . $namaTab2 . ',nama,count(tbl_raport.id_siswa) as conId from tbl_raport 
                                     join tbl_siswa on tbl_siswa.id = tbl_raport.id_siswa
-                                    group by id_siswa') as $key => $value) { ?>
+                                    join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                    join tbl_seleksi_proses on tbl_seleksi_proses.id_siswa = tbl_siswa.id
+                                    where tbl_seleksi_proses.ket = "Mengikuti"  and tbl_seleksi_proses.kode_seleksi="' . $tbl_seleksi . '"  and (tbl_kelas.kelas = 4 || tbl_kelas.kelas = 5) 
+                                    group by tbl_raport.id_siswa') as $key => $value) { ?>
                                                 <tr>
                                                     <td style="width: 10px;"><?= $nomor++; ?></td>
                                                     <td><?= $value['nama'] ?></td>
@@ -210,14 +217,14 @@
                                                 <th rowspan="2">No</th>
                                                 <th rowspan="2">Nama</th>
                                                 <?php $conNilai = $koneksi->query("select count(*) 
-                                        from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]'")->fetchColumn(); ?>
+                                        from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]'")->fetchColumn(); ?>
                                                 <th colspan="<?= $conNilai ?>">Nilai</th>
                                             </tr>
                                             <tr>
                                                 <?php
                                                 $namaTab3 = '';
                                                 $namaTabSum3 = '';
-                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]'") as $key => $value) {
+                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]'") as $key => $value) {
                                                     $dat3 = preg_replace("/_/", " ", $value['subkriteria']);
                                                     $namaTab3 .=  "sum(" . $value['subkriteria'] . ") as " . $value['subkriteria'] . ",";
                                                     $arrayTab3[] = $value['subkriteria'];
@@ -232,9 +239,12 @@
                                         <tbody>
                                             <?php
                                             $nomor = 1;
-                                            foreach ($koneksi->query('select ' . $namaTab3 . ',nama,count(id_siswa) as conId from tbl_raport 
+                                            foreach ($koneksi->query('select ' . $namaTab3 . ',nama,count(tbl_raport.id_siswa) as conId from tbl_raport 
                                     join tbl_siswa on tbl_siswa.id = tbl_raport.id_siswa
-                                    group by id_siswa') as $key => $value) { ?>
+                                    join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                    join tbl_seleksi_proses on tbl_seleksi_proses.id_siswa = tbl_siswa.id
+                                    where tbl_seleksi_proses.ket = "Mengikuti" and tbl_seleksi_proses.kode_seleksi="' . $tbl_seleksi . '"  and (tbl_kelas.kelas = 4 || tbl_kelas.kelas = 5) 
+                                    group by tbl_raport.id_siswa') as $key => $value) { ?>
                                                 <tr>
                                                     <td style="width: 10px;"><?= $nomor++; ?></td>
                                                     <td><?= $value['nama'] ?></td>
@@ -305,6 +315,7 @@
                                                     <h3 data-toggle="tab" href="#perhitungan_ncf" class="nav-link active card-title mt-2">Perhitungan NCF(Core Factor)</h3>
                                                     <h3 data-toggle="tab" href="#perhitungan_nsf" class="nav-link card-title mt-2">Perhitungan NSF(Secondary Factor)</h3>
                                                     <h3 data-toggle="tab" href="#perhitungan_total" class="nav-link card-title mt-2">Perhitungan Nilai Total</h3>
+                                                    <h3 data-toggle="tab" href="#perangkingan" class="nav-link card-title mt-2">Perangkingan</h3>
                                                 </li>
                                             </ul>
                                         </div>
@@ -318,7 +329,7 @@
                                                                 <th rowspan="2">No</th>
                                                                 <th rowspan="2">Nama</th>
                                                                 <?php $conNilai = $koneksi->query("select count(*) 
-                                        from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]' and faktor ='Core'")->fetchColumn(); ?>
+                                        from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]' and faktor ='Core'")->fetchColumn(); ?>
                                                                 <th colspan="<?= $conNilai ?>">Nilai</th>
                                                                 <th rowspan="2">Nilai NCF</th>
                                                             </tr>
@@ -327,7 +338,7 @@
                                                                 $namaTab4 = '';
                                                                 $namaTabSum4 = '';
                                                                 $jumlahTab = 0;
-                                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria,tbl_seleksi.bobot as bobot from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]' and faktor='Core'") as $key => $value) {
+                                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria,tbl_seleksi.bobot as bobot from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]' and faktor='Core'") as $key => $value) {
                                                                     $dat4 = preg_replace("/_/", " ", $value['subkriteria']);
                                                                     $namaTab4 .=  "sum(" . $value['subkriteria'] . ") as " . $value['subkriteria'] . ",";
                                                                     $arrayTab4[] = $value['subkriteria'];
@@ -344,9 +355,12 @@
                                                         <tbody>
                                                             <?php
                                                             $nomor = 1;
-                                                            foreach ($koneksi->query('select ' . $namaTab4 . ',nama,count(id_siswa) as conId,id_siswa as idsiswa from tbl_raport 
+                                                            foreach ($koneksi->query('select ' . $namaTab4 . ',nama,count(tbl_raport.id_siswa) as conId,tbl_raport.id_siswa as idsiswa from tbl_raport 
                                                             join tbl_siswa on tbl_siswa.id = tbl_raport.id_siswa
-                                                            group by id_siswa') as $key => $value) {
+                                                            join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                                            join tbl_seleksi_proses on tbl_seleksi_proses.id_siswa = tbl_siswa.id
+                                    where tbl_seleksi_proses.ket = "Mengikuti" and tbl_seleksi_proses.kode_seleksi="' . $tbl_seleksi . '" and (tbl_kelas.kelas = 4 || tbl_kelas.kelas = 5) 
+                                                            group by tbl_raport.id_siswa') as $key => $value) {
                                                                 $idsiswa = $value['idsiswa'];
                                                                 $data[$idsiswa] = 0; ?>
                                                                 <tr>
@@ -420,7 +434,7 @@
                                                                 <th rowspan="2">No</th>
                                                                 <th rowspan="2">Nama</th>
                                                                 <?php $conNilai = $koneksi->query("select count(*) 
-                                        from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]' and faktor ='Secondary'")->fetchColumn(); ?>
+                                        from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]' and faktor ='Secondary'")->fetchColumn(); ?>
                                                                 <th colspan="<?= $conNilai ?>">Nilai</th>
                                                                 <th rowspan="2">Nilai NSF</th>
                                                             </tr>
@@ -429,7 +443,7 @@
                                                                 $namaTab5 = '';
                                                                 $namaTabSum5 = '';
                                                                 $jumlahTab2 = 0;
-                                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria,tbl_seleksi.bobot as bobot from tbl_seleksi where kriteria='$_POST[kriteria]' and year(tanggal)='$_POST[tanggal]' and faktor='Secondary'") as $key => $value) {
+                                                                foreach ($koneksi->query("select subkriteria,tbl_seleksi.bobot_subkriteria,tbl_seleksi.bobot as bobot from tbl_seleksi where kode_seleksi='$_POST[kode_seleksi]' and faktor='Secondary'") as $key => $value) {
                                                                     $dat5 = preg_replace("/_/", " ", $value['subkriteria']);
                                                                     $namaTab5 .=  "sum(" . $value['subkriteria'] . ") as " . $value['subkriteria'] . ",";
                                                                     $jumlahTab2 += 1;
@@ -446,9 +460,12 @@
                                                         <tbody>
                                                             <?php
                                                             $nomor = 1;
-                                                            foreach ($koneksi->query('select ' . $namaTab5 . ',nama,count(id_siswa) as conId,tbl_raport.id_siswa as idsiswa from tbl_raport 
+                                                            foreach ($koneksi->query('select ' . $namaTab5 . ',nama,count(tbl_raport.id_siswa) as conId,tbl_raport.id_siswa as idsiswa from tbl_raport 
                                     join tbl_siswa on tbl_siswa.id = tbl_raport.id_siswa
-                                    group by id_siswa') as $key => $value) {
+                                    join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                    join tbl_seleksi_proses on tbl_seleksi_proses.id_siswa = tbl_siswa.id
+                                    where tbl_seleksi_proses.ket = "Mengikuti" and tbl_seleksi_proses.kode_seleksi="' . $tbl_seleksi . '"  and (tbl_kelas.kelas = 4 || tbl_kelas.kelas = 5) 
+                                    group by tbl_raport.id_siswa') as $key => $value) {
                                                                 $idsiswa2 = $value['idsiswa'];
                                                                 $data2[$idsiswa2] = 0; ?>
                                                                 <tr>
@@ -519,19 +536,22 @@
                                                     <table id="example7" class="table table-bordered table-hover">
                                                         <thead>
                                                             <tr>
-                                                                <th rowspan="2">No</th>
-                                                                <th rowspan="2">Nama</th>
-                                                                <th rowspan="2">Nilai NCF</th>
-                                                                <th rowspan="2">Nilai NSF</th>
-                                                                <th rowspan="2">Total Nilai</th>
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>Nilai NCF</th>
+                                                                <th>Nilai NSF</th>
+                                                                <th>Total Nilai</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php
                                                             $nomor = 1;
-                                                            foreach ($koneksi->query('select ' . $namaTab5 . ',nama,count(id_siswa) as conId,tbl_raport.id_siswa as idsiswa from tbl_raport 
+                                                            foreach ($koneksi->query('select ' . $namaTab5 . ',nama,count(tbl_raport.id_siswa) as conId,tbl_raport.id_siswa as idsiswa from tbl_raport 
                                     join tbl_siswa on tbl_siswa.id = tbl_raport.id_siswa
-                                    group by id_siswa') as $key => $value) {
+                                    join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                    join tbl_seleksi_proses on tbl_seleksi_proses.id_siswa = tbl_siswa.id
+                                    where tbl_seleksi_proses.ket = "Mengikuti"  and tbl_seleksi_proses.kode_seleksi="' . $tbl_seleksi . '"  and (tbl_kelas.kelas = 4 || tbl_kelas.kelas = 5) 
+                                    group by tbl_raport.id_siswa') as $key => $value) {
                                                                 $idsiswa2 = $value['idsiswa']; ?>
                                                                 <tr>
                                                                     <td><?= $nomor++; ?></td>
@@ -540,10 +560,19 @@
                                                                     $nilaiNCF = $data[$idsiswa2] / $jumlahTab;
                                                                     $nilaiNSF =  $data2[$idsiswa2] / $jumlahTab2;
                                                                     $totalNilai = (($nilaiNCF * $bobotNCF) / 100) + (($nilaiNSF * $bobotNSF) / 100);
+                                                                    $totalNilai = number_format($totalNilai, 2);
                                                                     ?>
                                                                     <td><?= $nilaiNCF; ?></td>
                                                                     <td><?= $nilaiNSF; ?></td>
-                                                                    <td><?= number_format($totalNilai, 2); ?></td>
+                                                                    <td><?= $totalNilai; ?></td>
+                                                                    <?php
+                                                                    $cek = $koneksi->query("select count(*) from tbl_hasil where kode_seleksi='$tbl_seleksi' and id_siswa='$idsiswa2'")->fetchColumn();
+                                                                    if ($cek > 0) {
+                                                                        $koneksi->prepare("update tbl_hasil set hasil_nilai='$totalNilai' where id_siswa='$idsiswa2' and kode_seleksi='$tbl_seleksi'")->execute();
+                                                                    } else {
+                                                                        $koneksi->prepare("insert into tbl_hasil(id_siswa,kode_seleksi,hasil_nilai)values('$idsiswa2','$tbl_seleksi','$totalNilai')")->execute();
+                                                                    }
+                                                                    ?>
                                                                 </tr>
                                                             <?php
                                                             }; ?>
@@ -551,6 +580,47 @@
                                                     </table>
                                                 </div>
                                                 <!-- AKHIR PERHITUNGAN TOTAL -->
+
+                                                <!-- PERANGKINGAN -->
+                                                <div class="tab-pane" id="perangkingan">
+                                                    <table id="example8" class="table table-bordered table-hover">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>Hasil Nilai</th>
+                                                                <th>Keterangan</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php
+                                                            $nomor = 1;
+                                                            foreach ($koneksi->query('select * from tbl_hasil
+                                                            join tbl_siswa on tbl_siswa.id = tbl_hasil.id_siswa
+                                                            join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                                            join tbl_seleksi_proses on tbl_seleksi_proses.id_siswa = tbl_siswa.id
+                                                            where tbl_seleksi_proses.ket = "Mengikuti"  and tbl_seleksi_proses.kode_seleksi="' . $tbl_seleksi . '"  and (tbl_kelas.kelas = 4 || tbl_kelas.kelas = 5) 
+                                                            group by tbl_hasil.id_siswa 
+                                                            order by tbl_hasil.hasil_nilai desc') as $key => $value) { ?>
+                                                                <tr>
+                                                                    <?php if ($nomor >= 1 && $nomor <= 2) {
+                                                                        $ketRanking = "Lulus";
+                                                                    } elseif ($nomor == 3) {
+                                                                        $ketRanking = "Cadangan";
+                                                                    } else {
+                                                                        $ketRanking = "Tidak Lulus";
+                                                                    } ?>
+                                                                    <td><?= $nomor++; ?></td>
+                                                                    <td><?= $value['nama']; ?></td>
+                                                                    <td><?= $value['hasil_nilai']; ?></td>
+                                                                    <td><?= $ketRanking; ?></td>
+                                                                </tr>
+                                                            <?php
+                                                            }; ?>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <!-- AKHIR PERANGKINGAN -->
                                             </div>
                                         </div>
                                     </div>

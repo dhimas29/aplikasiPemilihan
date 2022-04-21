@@ -49,21 +49,9 @@ $fetch = $data->fetch();
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="nama" class="col-sm-2 col-form-label">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" readonly value="<?= $fetch['email']; ?>" name="email" class="form-control" id="inputEmail3" placeholder="ex: example@gmail.com">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
                                     <label for="alamat" class="col-sm-2 col-form-label">Level User</label>
                                     <div class="col-sm-10">
                                         <input type="text" readonly value="<?= $fetch['level_user']; ?>" name="level_user" class="form-control" id="inputEmail3" placeholder="ex: example@gmail.com">
-                                        <!-- <select name="level_user" id="" class="form-control">
-                                            <option value="">--Pilih--</option>
-                                            <option <?php if ($fetch['level_user'] == 'Admin') echo 'selected' ?> value="Admin">Admin</option>
-                                            <option <?php if ($fetch['level_user'] == 'Tutor') echo 'selected' ?> value="Tutor">Tutor</option>
-                                            <option <?php if ($fetch['level_user'] == 'Kepala') echo 'selected' ?> value="Kepala">Kepala</option>
-                                        </select> -->
                                     </div>
                                 </div>
                                 <div class="form-group">

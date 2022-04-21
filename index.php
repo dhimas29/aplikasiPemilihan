@@ -38,9 +38,9 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav me-auto mb-2 mb-lg-0">
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
-                            <a class="nav-link" href="#pricingscroll">Pricing</a>
-                            <a class="nav-link" href="#infoscroll">Info</a>
-                            <a class="nav-link" href="#albumscroll">Album</a>
+                            <a class="nav-link" href="#profilescroll">Profile</a>
+                            <a class="nav-link" href="#infoscroll">Visi Misi</a>
+                            <a class="nav-link" href="#albumscroll">Galery</a>
                         </div>
                         <div class="navbar-nav me-2">
                             <a class="btn btn-outline-primary rounded-pill" data-mdb-ripple-color="dark" data-bs-toggle="modal" href="#" data-bs-target="#loginModal"><i class="fa fa-sign-in" aria-hidden="true"> Login</i></a>
@@ -56,215 +56,57 @@
     <main>
         <!-- JUMBOTRON -->
         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://ecs7.tokopedia.net/blog-tokopedia-com/uploads/2021/07/pemandangan-alam.jpg" alt="">
-                    <div class="container">
+                    <img src="https://mataramweb.com/demo/wp-content/uploads/2021/08/sejumlah-siswa-membaca-bersama-pada-pekan-membaca-di-sekolah-_160412162710-283.jpg" style="background-size: cover;background-position: center;background-repeat: no-repeat;background-color: transparent;background-image: linear-gradient(180deg,#FF6666 40%,#631717 100%);" alt="">
+                    <!-- <div class="container">
                         <div class="carousel-caption text-start">
-                            <h1>Example headline.</h1>
-                            <p>Some representative placeholder content for the first slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+                            <h1>Selamat Datang</h1>
+                            <p>di SD Al-Wathoniyah 9</p>
                         </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://furnizing.com/files/img/hadirkan-suasana-alam-di-rumah-anda597e9f64b682dcc2d0bad5d20d0a2402.jpg" alt="">
-
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Some representative placeholder content for the second slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://www.lampost.co/upload/perlawanan-dari-alam.jpg" alt="">
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <h1>One more for good measure.</h1>
-                            <p>Some representative placeholder content for the third slide of this carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
         <!-- END JUMBOTRON -->
 
-        <!-- PRICING -->
-        <div id="pricingscroll">
+        <!-- profile -->
+        <div class="bg-light mt-5" id="profilescroll">
             <div class="container col-xxl-8 px-4 py-5">
-                <div class="pricing-header pb-md-4 mx-auto text-center">
-                    <h1 class="display-4 fw-normal">Pricing</h1>
-                    <p class="fs-5 text-muted">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It’s built with default Bootstrap components and utilities with little customization.</p>
-                </div>
-                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm">
-                            <div class="card-header py-3">
-                                <h4 class="my-0 fw-normal">Free</h4>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title pricing-card-title">$0<small class="text-muted fw-light">/mo</small></h1>
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <li>10 users included</li>
-                                    <li>2 GB of storage</li>
-                                    <li>Email support</li>
-                                    <li>Help center access</li>
-                                </ul>
-                                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
-                            </div>
-                        </div>
+                <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                    <div class="col-10 col-sm-8 col-lg-6">
+                        <img src="https://www.laduni.id/panel/themes/default/uploads/post/PESANTREN_AL-WATHONIYAH_ASSHODRIYAH_9_JAKARTA_TIMUR.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
                     </div>
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm">
-                            <div class="card-header py-3">
-                                <h4 class="my-0 fw-normal">Pro</h4>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title pricing-card-title">$15<small class="text-muted fw-light">/mo</small></h1>
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <li>20 users included</li>
-                                    <li>10 GB of storage</li>
-                                    <li>Priority email support</li>
-                                    <li>Help center access</li>
-                                </ul>
-                                <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button>
-                            </div>
-                        </div>
+                    <div class="col-lg-6">
+                        <h1 class="display-5 fw-bold lh-1 mb-3">Yayasan Al Wathoniyah 9</h1>
+                        <p class="lead" style="text-align: justify;text-indent: 30px;">Merupakan sebuah lembaga Pendidikan Formal dan Non Formal, yang didirikan oleh Drs. KH. A. Shodri HM pada tanggal, 1 Januari 1970 di atas sebidang tanah wakaf seluas 500 m2 yang diuraikan dalam girik nomor C.682 Persil 43 terletak di Kp. Pedaengan Kel. Penggilingan Kec. Cakung Jakarta Timur.</p>
                     </div>
-                    <div class="col">
-                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
-                            <div class="card-header py-3 text-white bg-primary border-primary">
-                                <h4 class="my-0 fw-normal">Enterprise</h4>
-                            </div>
-                            <div class="card-body">
-                                <h1 class="card-title pricing-card-title">$29<small class="text-muted fw-light">/mo</small></h1>
-                                <ul class="list-unstyled mt-3 mb-4">
-                                    <li>30 users included</li>
-                                    <li>15 GB of storage</li>
-                                    <li>Phone and email support</li>
-                                    <li>Help center access</li>
-                                </ul>
-                                <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 class="display-6 text-center mb-4 mt-4">Compare plans</h2>
-
-                <div class="table-responsive">
-                    <table class="table text-center">
-                        <thead>
-                            <tr>
-                                <th style="width: 34%;"></th>
-                                <th style="width: 22%;">Free</th>
-                                <th style="width: 22%;">Pro</th>
-                                <th style="width: 22%;">Enterprise</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="text-start">Public</th>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Private</th>
-                                <td></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                            </tr>
-                        </tbody>
-
-                        <tbody>
-                            <tr>
-                                <th scope="row" class="text-start">Permissions</th>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Sharing</th>
-                                <td></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Unlimited members</th>
-                                <td></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="text-start">Extra security</th>
-                                <td></td>
-                                <td></td>
-                                <td><svg class="bi" width="24" height="24">
-                                        <use xlink:href="#check" />
-                                    </svg></td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
-        <!-- END PRICING -->
+        <!-- END profile -->
 
         <!-- INFO -->
         <div class="bg-light mt-5" id="infoscroll">
             <div class="container col-xxl-8 px-4 py-5">
-                <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                    <div class="col-10 col-sm-8 col-lg-6">
-                        <img src="https://getbootstrap.com/docs/5.1/examples/heroes/bootstrap-themes.png" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+                <div class="row g-5 py-5">
+                    <div class="col-lg-6">
+                        <h3>VISI</h3>
+                        <p class="lead" style="text-align: justify;text-indent: 30px;">
+                            Terwujudnya Anak Didik Madrasah Ibtidaiyah Al-Wathoniyah Cantilan yang ber-IMTAK (beriman, bertakwa, dan berakhlakul karimah), serta mampu ber-IPTEK (Ilmu Pengetahuan dan Teknologi) untuk menyongsong masa depan. Serta mewujudkan Madrasah Kebanggaan Masyarakat.
+                        </p>
                     </div>
                     <div class="col-lg-6">
-                        <h1 class="display-5 fw-bold lh-1 mb-3">Responsive left-aligned hero with image</h1>
-                        <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.</p>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                            <button type="button" class="btn btn-primary btn-lg px-4 me-md-2">Primary</button>
-                            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Default</button>
-                        </div>
+                        <h3>MISI</h3>
+                        <!-- <h1 class="display-5 fw-bold lh-1 mb-3">Yayasan Al Wathoniyah 9</h1> -->
+                        <p class="lead" style="text-align: justify;">
+                        <ol style="padding-left: 15px;">
+                            <li>Meningkatkan Kualitas Pelayanan Mutu Pendidikan.</li>
+                            <li>Meningkatkan Aktivitas dan Kreatifitas Siswa Melalui Peningkatan Kinerja Pelaksana Praktikum Pendidikan.</li>
+                            <li>Meningkatkan Kualitas Bimbingan Pengamalan Ibadah dan Pengamalan Sikap Hormat Terhadap Penganut Agama Lain.</li>
+                            <li>Meningkatkan Partisifasi Aktif dalam Mengikuti Inovasi dalam Bidang Pendidikan.</li>
+                        </ol>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -276,7 +118,7 @@
         <section class="py-5 text-center container" id="albumscroll">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light">Album example</h1>
+                    <h1 class="fw-light">Galery</h1>
                 </div>
             </div>
         </section>
@@ -284,17 +126,60 @@
         <div class="album py-5 bg-light">
             <div class="container">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <?php for ($i = 0; $i < 9; $i++) {  ?>
-                        <div class="col">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <img width="100%" height="225" src="https://getbootstrap.com/docs/5.1/examples/heroes/bootstrap-themes.png" alt="">
-                                    <hr>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <img width="100%" height="225" src="https://mataramweb.com/demo/wp-content/uploads/2021/08/sejumlah-siswa-membaca-bersama-pada-pekan-membaca-di-sekolah-_160412162710-283.jpg" alt="">
+                                <hr>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
                             </div>
                         </div>
-                    <?php } ?>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <img width="100%" height="225" src="https://mataramweb.com/demo/wp-content/uploads/2021/08/xhero_bg.jpg.pagespeed.ic_.J2JpiIDF0w.webp" alt="">
+                                <hr>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <img width="100%" height="225" src="https://mataramweb.com/demo/wp-content/uploads/2021/08/sd.jpg" alt="">
+                                <hr>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <img width="100%" height="225" src="https://mataramweb.com/demo/wp-content/uploads/2021/08/Hari-Pramuka.2e16d0ba.fill-1200x800-1.jpg" alt="">
+                                <hr>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <img width="100%" height="225" src="https://mataramweb.com/demo/wp-content/uploads/2021/08/Cara-Daftar-BLT-Anak-Sekolah-Rp-34-Juta.jpg" alt="">
+                                <hr>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <img width="100%" height="225" src="https://mataramweb.com/demo/wp-content/uploads/2021/08/mengulas-usia-yang-pantas-dari-syarat-masuk-sd-mendikbud-1583145880.jpg" alt="">
+                                <hr>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -310,16 +195,16 @@
                     <div class="col-md-3">
                         <div class="row">
                             <div class="col">
-                                <img src="https://getbootstrap.com/docs/5.1/examples/heroes/bootstrap-themes.png" width="100%" alt="">
+                                <img src="assets/img/logoSD.png" width="100%" alt="">
                             </div>
                             <div class="col">
-                                <h3 class="mt-3">PBN</h3>
+                                <h3>SD Al - Wathoniyah 9</h3>
                             </div>
-                            <p class="text-muted" style="text-align: justify;text-indent: 50px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid numquam, fugiat voluptatibus animi veniam ipsa, veritatis esse atque quod nisi dicta quidem tenetur quibusdam similique quaerat non quis dolore, repudiandae quos accusamus autem voluptas? Dolorem adipisci repellat eaque iusto. Magnam, molestias iusto! Inventore minus aperiam debitis pariatur cupiditate amet deleniti?</p>
+                            <p class="text-muted" style="text-align: justify;text-indent: 50px;">Merupakan sebuah lembaga Pendidikan Formal dan Non Formal, yang didirikan oleh Drs. KH. A. Shodri HM pada tanggal, 1 Januari 1970 di atas sebidang tanah wakaf seluas 500 m2 yang diuraikan dalam girik nomor C.682 Persil 43 terletak di Kp. Pedaengan Kel. Penggilingan Kec. Cakung Jakarta Timur.</p>
                         </div>
                     </div>
 
-                    <div class="col">
+                    <div class="col-md-1">
 
                     </div>
 
@@ -327,20 +212,20 @@
                         <h5>Pages</h5>
                         <ul class="nav flex-column">
                             <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
-                            <li class="nav-item mb-2"><a href="#pricingscroll" class="nav-link p-0 text-muted">Pricing</a></li>
+                            <li class="nav-item mb-2"><a href="#profilescroll" class="nav-link p-0 text-muted">Profile</a></li>
                             <li class="nav-item mb-2"><a href="#infoscroll" class="nav-link p-0 text-muted">Info</a></li>
-                            <li class="nav-item mb-2"><a href="#albumscroll" class="nav-link p-0 text-muted">Album</a></li>
+                            <li class="nav-item mb-2"><a href="#albumscroll" class="nav-link p-0 text-muted">Galery</a></li>
                         </ul>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-5">
                         <h5>Contact</h5>
                         <div class="row">
                             <div class="col-md-3">
                                 <p>Alamat</p>
                             </div>
                             <div class="col">
-                                <p style="text-align: justify;">: Jl. Pramuka No.59, RT.006/RW.006, Marga Jaya, Kec. Bekasi Sel., Kota Bks, Jawa Barat 17141</p>
+                                <p style="text-align: justify;">: Jalan Raya Penggilingan No.99, Penggilingan, Cakung, RT.3/RW.8, Penggilingan, Kec. Cakung, Kota Jakarta Timur, Daerah Khusus Ibukota Jakarta 13940</p>
                             </div>
                         </div>
                         <div class="row">
@@ -348,18 +233,18 @@
                                 <p>No.Telp</p>
                             </div>
                             <div class="col">
-                                <p style="text-align: justify;">: 0812312312</p>
+                                <p style="text-align: justify;">: (021) 4616390</p>
                             </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-md-3">
                                 <p>Email</p>
                             </div>
                             <div class="col">
                                 <p style="text-align: justify;">: email@gmail.com</p>
                             </div>
-                        </div>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d53364.37920309387!2d107.009582450245!3d-6.219981594265342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c25f0027091%3A0x885772e11113cb50!2sAlun-Alun%20Kota%20Bekasi!5e0!3m2!1sid!2sid!4v1647613020633!5m2!1sid!2sid" width="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div> -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126919.0608560779!2d106.94450120285607!3d-6.234618778308532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698b152e1f7a27%3A0x96240fe1b46cd183!2sYayasan%20Al%20-%20Wathoniyah%20Asshodriyah%209!5e0!3m2!1sid!2sid!4v1650553900878!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </row>
                     </div>
                 </div>
@@ -395,10 +280,6 @@
                                 <input type="password" placeholder="Masukkan Password Anda" name="password" required class="form-control" id="exampleInputPassword1">
                             </div>
                             <button type="submit" class="btn btn-md btn-primary rounded-pill d-grid gap-2 col-6 mx-auto">Masuk Sekarang Juga</button>
-
-                        </div>
-                        <div class="modal-footer">
-                            <small>Belum punya akun. <a class="btn-sm" data-bs-toggle="modal" href="#" data-bs-target="#registerModal">Daftar disini</a></small>
 
                         </div>
                     </form>

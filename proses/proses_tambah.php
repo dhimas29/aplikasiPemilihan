@@ -24,7 +24,7 @@
             echo "<script>
             Swal.fire({
                 title: 'Simpan Data!',
-                text: 'File gagal disimpan.',
+                text: 'Simpan data gagal',
                 icon: 'error'
             }).then((result) => {
                     window.location.href = '../index_admin.php?folder=user&page=user&actions=tampil'
@@ -37,7 +37,7 @@
                 echo "<script>
             Swal.fire({
                 title: 'Simpan Data!',
-                text: 'File berhasil disimpan.',
+                text: 'Simpan data berhasil',
                 icon: 'success'
             }).then((result) => {
                     window.location.href = '../index_admin.php?folder=user&page=user&actions=tampil'
@@ -47,7 +47,7 @@
                 echo "<script>
             Swal.fire({
                 title: 'Simpan Data!',
-                text: 'File gagal disimpan.',
+                text: 'Simpan data gagal',
                 icon: 'error'
             }).then((result) => {
                     window.location.href = '../index_admin.php?folder=user&page=user&actions=tampil'
@@ -102,7 +102,6 @@
                         }
                     } else {
                         $sql_user = $koneksi->prepare("insert into tbl_users(username,password,level_user)values('$nisn','$pass','$level')")->execute();
-
                         $cek_id = $koneksi->query("select * from tbl_users where username='$nisn'")->fetch();
                         $cek_kelas = $koneksi->query("select * from tbl_kelas where concat like '$kelas'")->fetch();
                         $q1 = $koneksi->prepare("INSERT into tbl_siswa (id_kelas,id_user,nama,jenis_kelamin,tanggal_lahir,tempat_lahir,alamat,tahun_ajaran,created_at) values('$cek_kelas[id]','$cek_id[id]','$nama','$jenis_kelamin','$tanggal_lahir','$tempat_lahir','$alamat','$tahun_ajaran',NOW())")->execute();
@@ -158,7 +157,7 @@
                 echo "<script>
             Swal.fire({
                 title: 'Simpan Data!',
-                text: 'File berhasil disimpan.',
+                text: 'Simpan data berhasil',
                 icon: 'success'
             }).then((result) => {
                     window.location.href = '../index_admin.php?folder=kelas&page=kelas&actions=tampil'
@@ -168,7 +167,7 @@
                 echo "<script>
             Swal.fire({
                 title: 'Simpan Data!',
-                text: 'File gagal disimpan.',
+                text: 'Simpan data gagal',
                 icon: 'error'
             }).then((result) => {
                     window.location.href = '../index_admin.php?folder=kelas&page=kelas&actions=tampil'
@@ -336,46 +335,60 @@
         $bobotCore = $_POST['bobotCore'];
         $bobotSecon = $_POST['bobotSecon'];
         $kode_seleksi = $_POST['kode_seleksi'];
-        for ($i = 1; $i <= count($_POST['kritCore']); $i++) {
-            $kritCore = $_POST['kritCore'][$i];
-            $subCore = $_POST['subCore'][$i];
-            $cek = $koneksi->query("select count(*) from tbl_seleksi where kode_seleksi ='$kode_seleksi' and kriteria='$lomba' and subkriteria='$kritCore' and tanggal='$tanggal'")->fetchColumn();
-            if ($cek > 0) {
-                $q1 = $koneksi->prepare("update tbl_seleksi set bobot_subkriteria='$subCore',bobot='$bobotCore' where faktor ='Core' and kode_seleksi ='$kode_seleksi' and kritera='$lomba' and subkriteria='$subCore' and tanggal='$tanggal'");
-            } else {
-                $q1 = $koneksi->prepare("INSERT into tbl_seleksi (kode_seleksi,faktor,kriteria,bobot,subkriteria,bobot_subkriteria,tanggal,created_at) values('$kode_seleksi','Core','$lomba','$bobotCore','$kritCore','$subCore','$tanggal',NOW())")->execute();
-            }
-        }
-        for ($i = 1; $i <= count($_POST['kritSecon']); $i++) {
-            $kritSecon = $_POST['kritSecon'][$i];
-            $subSecon = $_POST['subSecon'][$i];
-            $cek = $koneksi->query("select count(*) from tbl_seleksi where kode_seleksi ='$kode_seleksi' and kriteria='$lomba' and subkriteria='$kritSecon' and tanggal='$tanggal'")->fetchColumn();
-            if ($cek > 0) {
-                $q2 = $koneksi->prepare("update tbl_seleksi set bobot_subkriteria='$subSecon',bobot='$bobotSecon' where faktor ='Secondary' and kode_seleksi ='$kode_seleksi' and kritera='$lomba' and subkriteria='$subSecon' and tanggal='$tanggal'");
-            } else {
-                $q2 = $koneksi->prepare("INSERT into tbl_seleksi (kode_seleksi,faktor,kriteria,bobot,subkriteria,bobot_subkriteria,tanggal,created_at) values('$kode_seleksi','Secondary','$lomba','$bobotSecon','$kritSecon','$subSecon','$tanggal',NOW())")->execute();
-            }
-        }
-        if ($q1 && $q2) {
+        $tahun = date('Y', strtotime($tanggal));
+        $cek_tahun = $koneksi->query("select count(*) from tbl_seleksi where kriteria='$lomba' and year(tanggal)='$tahun'")->fetchColumn();
+        if ($cek_tahun > 0) {
             echo "<script>
             Swal.fire({
                 title: 'Simpan Data!',
-                text: 'File berhasil diupload.',
-                icon: 'success'
-            }).then((result) => {
-                    window.location.href = '../index_admin.php?folder=seleksi&page=seleksi&actions=tampil'
-            })
-        </script>";
-        } else {
-            echo "<script>
-            Swal.fire({
-                title: 'Simpan Data!',
-                text: 'File gagal diupload.',
+                text: 'Periode Lomba Pada Tahun Ini Sudah ada.',
                 icon: 'error'
             }).then((result) => {
                     window.location.href = '../index_admin.php?folder=seleksi&page=seleksi&actions=tampil'
             })
         </script>";
+        } else {
+            for ($i = 1; $i <= count($_POST['kritCore']); $i++) {
+                $kritCore = $_POST['kritCore'][$i];
+                $subCore = $_POST['subCore'][$i];
+                $cek = $koneksi->query("select count(*) from tbl_seleksi where kode_seleksi ='$kode_seleksi' and kriteria='$lomba' and subkriteria='$kritCore' and tanggal='$tanggal'")->fetchColumn();
+                if ($cek > 0) {
+                    $q1 = $koneksi->prepare("update tbl_seleksi set bobot_subkriteria='$subCore',bobot='$bobotCore' where faktor ='Core' and kode_seleksi ='$kode_seleksi' and kritera='$lomba' and subkriteria='$subCore' and tanggal='$tanggal'")->execute();
+                } else {
+                    $q1 = $koneksi->prepare("INSERT into tbl_seleksi (kode_seleksi,faktor,kriteria,bobot,subkriteria,bobot_subkriteria,tanggal,created_at) values('$kode_seleksi','Core','$lomba','$bobotCore','$kritCore','$subCore','$tanggal',NOW())")->execute();
+                }
+            }
+            for ($i = 1; $i <= count($_POST['kritSecon']); $i++) {
+                $kritSecon = $_POST['kritSecon'][$i];
+                $subSecon = $_POST['subSecon'][$i];
+                $cek = $koneksi->query("select count(*) from tbl_seleksi where kode_seleksi ='$kode_seleksi' and kriteria='$lomba' and subkriteria='$kritSecon' and tanggal='$tanggal'")->fetchColumn();
+                if ($cek > 0) {
+                    $q2 = $koneksi->prepare("update tbl_seleksi set bobot_subkriteria='$subSecon',bobot='$bobotSecon' where faktor ='Secondary' and kode_seleksi ='$kode_seleksi' and kritera='$lomba' and subkriteria='$subSecon' and tanggal='$tanggal'")->execute();
+                } else {
+                    $q2 = $koneksi->prepare("INSERT into tbl_seleksi (kode_seleksi,faktor,kriteria,bobot,subkriteria,bobot_subkriteria,tanggal,created_at) values('$kode_seleksi','Secondary','$lomba','$bobotSecon','$kritSecon','$subSecon','$tanggal',NOW())")->execute();
+                }
+            }
+            if ($q1 && $q2) {
+                echo "<script>
+            Swal.fire({
+                title: 'Simpan Data!',
+                text: 'Simpan data berhasil.',
+                icon: 'success'
+            }).then((result) => {
+                    window.location.href = '../index_admin.php?folder=seleksi&page=seleksi&actions=tampil'
+            })
+        </script>";
+            } else {
+                echo "<script>
+            Swal.fire({
+                title: 'Simpan Data!',
+                text: 'Simpan data gagal.',
+                icon: 'error'
+            }).then((result) => {
+                    window.location.href = '../index_admin.php?folder=seleksi&page=seleksi&actions=tampil'
+            })
+        </script>";
+            }
         }
     }
 

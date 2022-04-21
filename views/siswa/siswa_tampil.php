@@ -26,7 +26,9 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Data Siswa</h3>
-                            <a href="" data-toggle="modal" data-target="#tambahData" class="btn btn-primary btn-sm" style="float: right;">Upload Data Siswa</a>
+                            <?php if ($_SESSION['level'] == 'Admin') : ?>
+                                <a href="" data-toggle="modal" data-target="#tambahData" class="btn btn-primary btn-sm" style="float: right;">Upload Data Siswa</a>
+                            <?php endif; ?>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -49,25 +51,50 @@
                                 <tbody>
                                     <?php
                                     $nomor = 1;
-                                    foreach ($koneksi->query('select *,tbl_siswa.id as idsiswa from tbl_siswa
+                                    if ($_SESSION['level'] == "Guru") {
+                                        $kelasCek = $koneksi->query("select * from tbl_guru where id_user='$_SESSION[id]'")->fetch();
+                                        foreach ($koneksi->query('select *,tbl_siswa.id as idsiswa from tbl_siswa
                                     join tbl_users on tbl_users.id = tbl_siswa.id_user
                                     join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                    where tbl_siswa.id_kelas = ' . $kelasCek['id_kelas'] . '
                                     order by concat asc,username asc') as $key => $value) { ?>
-                                        <tr>
-                                            <td><?= $nomor++; ?></td>
-                                            <td><?= $value['username']; ?></td>
-                                            <td><?= $value['nama']; ?></td>
-                                            <td><?= $value['tempat_lahir'] . " / " . date('d-M-Y', strtotime($value['tanggal_lahir'])); ?></td>
-                                            <td><?= $value['jenis_kelamin']; ?></td>
-                                            <td><?= $value['alamat']; ?></td>
-                                            <td><?= $value['concat']; ?></td>
-                                            <td><?= $value['tahun_ajaran']; ?></td>
-                                            <td>
-                                                <a href="?folder=user&page=tutor&actions=detail&id=<?= $value['idsiswa'] ?>" class="btn btn-sm btn-info">Detail</a>|
-                                                <a onclick="return deleteSwal(<?= $value['id_user'] ?>,'<?= $namaTabel ?>','siswa')" class="btn btn-sm btn-danger">Delete</a>
-                                            </td>
-                                        </tr>
-                                    <?php }; ?>
+                                            <tr>
+                                                <td><?= $nomor++; ?></td>
+                                                <td><?= $value['username']; ?></td>
+                                                <td><?= $value['nama']; ?></td>
+                                                <td><?= $value['tempat_lahir'] . " / " . date('d-M-Y', strtotime($value['tanggal_lahir'])); ?></td>
+                                                <td><?= $value['jenis_kelamin']; ?></td>
+                                                <td><?= $value['alamat']; ?></td>
+                                                <td><?= $value['concat']; ?></td>
+                                                <td><?= $value['tahun_ajaran']; ?></td>
+                                                <td>
+                                                    <a href="?folder=siswa&page=siswa&actions=detail&id=<?= $value['idsiswa'] ?>" class="btn btn-sm btn-info">Detail</a>|
+                                                    <a onclick="return deleteSwal(<?= $value['id_user'] ?>,'<?= $namaTabel ?>','siswa')" class="btn btn-sm btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+                                        <?php }
+                                    } else {
+                                        foreach ($koneksi->query('select *,tbl_siswa.id as idsiswa from tbl_siswa
+                                    join tbl_users on tbl_users.id = tbl_siswa.id_user
+                                    join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                    order by concat asc,username asc') as $key => $value) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $nomor++; ?></td>
+                                                <td><?= $value['username']; ?></td>
+                                                <td><?= $value['nama']; ?></td>
+                                                <td><?= $value['tempat_lahir'] . " / " . date('d-M-Y', strtotime($value['tanggal_lahir'])); ?></td>
+                                                <td><?= $value['jenis_kelamin']; ?></td>
+                                                <td><?= $value['alamat']; ?></td>
+                                                <td><?= $value['concat']; ?></td>
+                                                <td><?= $value['tahun_ajaran']; ?></td>
+                                                <td>
+                                                    <a href="?folder=siswa&page=siswa&actions=detail&id=<?= $value['idsiswa'] ?>" class="btn btn-sm btn-info">Detail</a>|
+                                                    <a onclick="return deleteSwal(<?= $value['id_user'] ?>,'<?= $namaTabel ?>','siswa')" class="btn btn-sm btn-danger">Delete</a>
+                                                </td>
+                                            </tr>
+                                    <?php }
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>

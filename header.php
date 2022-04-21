@@ -17,7 +17,14 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
-
+    <style>
+        .verticalVR {
+            border-left: 6px solid black;
+            height: 200px;
+            position: absolute;
+            left: 50%;
+        }
+    </style>
     <!-- Custom warna sidebar -->
     <!-- <style>
         .main-sidebar {

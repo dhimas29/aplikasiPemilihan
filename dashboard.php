@@ -22,62 +22,105 @@
         <div class="container-fluid">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-sm-12">
-                    <!-- small box -->
-                    <div class="row">
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-info">
-                                <div class="inner">
-                                    <h4>Data </h4>
-                                    <p>2</p>
+                <?php if ($_SESSION['level'] == 'Admin') : ?>
+                    <div class="col-lg-12">
+                        <!-- small box -->
+                        <div class="row">
+                            <div class="col-lg-3 col-3">
+                                <!-- small box -->
+                                <div class="small-box bg-info">
+                                    <div class="inner">
+                                        <h4>Data User</h4>
+                                        <?php $conUser = $koneksi->query("select count(*) from tbl_users")->fetchColumn(); ?>
+                                        <p><?= $conUser; ?></p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-users"></i>
+                                    </div>
+                                    <a href="?folder=user&page=user&actions=tampil" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a href="?page=&actions=tampil" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                             </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-3 col-6">
-                            <!-- small box -->
-                            <div class="small-box bg-success">
-                                <div class="inner">
-                                    <h4>Data</h4>
-                                    <p>1</p>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-3">
+                                <!-- small box -->
+                                <div class="small-box bg-success">
+                                    <div class="inner">
+                                        <h4>Data Kelas</h4>
+                                        <?php $conKelas = $koneksi->query("select count(*) from tbl_kelas")->fetchColumn(); ?>
+                                        <p><?= $conKelas; ?></p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-map-signs"></i>
+                                    </div>
+                                    <a href="?folder=kelas&page=kelas&actions=tampil" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
-                                <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-3">
+                                <!-- small box -->
+                                <div class="small-box bg-danger">
+                                    <div class="inner">
+                                        <h4>Data Guru</h4>
+                                        <?php $conGuru = $koneksi->query("select count(*) from tbl_guru")->fetchColumn(); ?>
+                                        <p><?= $conGuru; ?></p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-user-secret"></i>
+                                    </div>
+                                    <a href="?folder=guru&page=guru&actions=tampil" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                                 </div>
-                                <a href="?page=&actions=tampil" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-lg-3 col-3">
+                                <!-- small box -->
+                                <div class="small-box bg-warning">
+                                    <div class="inner">
+                                        <h4>Data Siswa</h4>
+                                        <?php $conSiswa = $koneksi->query("select count(*) from tbl_siswa")->fetchColumn(); ?>
+                                        <p><?= $conSiswa; ?></p>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <a href="?folder=siswa&page=siswa&actions=tampil" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <?php endif; ?>
                 <!-- ./col -->
-            </div>
-            <!-- BAR CHART -->
-            <div class="card card-success">
-                <div class="card-header">
-                    <h3 class="card-title">Data</h3>
-
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                            <i class="fas fa-times"></i>
-                        </button>
+                <?php if ($_SESSION['level'] == 'Guru') : ?>
+                    <div class="col-md-12">
+                        <div class="col-lg-3 col-3">
+                            <!-- small box -->
+                            <div class="small-box bg-warning">
+                                <div class="inner">
+                                    <h4>Data Siswa</h4>
+                                    <?php $guruFetch = $koneksi->query("select * from tbl_guru where id_user='$_SESSION[id]'")->fetch(); ?>
+                                    <?php $conSiswa = $koneksi->query("select count(*) from tbl_siswa
+                                    where id_kelas='$guruFetch[id_kelas]'")->fetchColumn(); ?>
+                                    <p><?= $conSiswa; ?></p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-user"></i>
+                                </div>
+                                <a href="?folder=siswa&page=siswa&actions=tampil" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">
+                                    Dashboard
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                Selamat datang di website SD Al-Wathoniyah 9
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="card-body">
-                    <!-- <div class="chart">
-                        <canvas id="barChart" style="min-height: 300px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
-                    </div> -->
-                </div>
-                <!-- /.card-body -->
+                <?php endif; ?>
             </div>
-            <!-- /.card -->
+
             <!-- /.row (main row) -->
         </div><!-- /.container-fluid -->
     </section>

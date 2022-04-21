@@ -44,7 +44,17 @@
             })
          </script>";
         }
-    } elseif ($tabel == '') {
+    } elseif ($tabel == 'tbl_seleksi_proses') {
+        $ket = $_POST['ket'];
+        $id = $_POST['id'];
+        $id_user = $_POST['id_user'];
+        $kode_seleksi = $_POST['kode_seleksi'];
+        $cek = $koneksi->query("select count(*) from tbl_seleksi_proses where id_siswa='$id' and kode_seleksi='$kode_seleksi' and id_user ='$id_user'")->fetchColumn();
+        if ($cek > 0) {
+            $querys = $koneksi->prepare("update tbl_seleksi_proses set ket='$ket' where id_siswa='$id' and kode_seleksi='$kode_seleksi' and id_user='$id_user'")->execute();
+        } else {
+            $querys = $koneksi->prepare("INSERT into tbl_seleksi_proses (id_siswa,id_user,kode_seleksi,ket,created_at) values('$id','$id_user','$kode_seleksi','$ket',NOW())")->execute();
+        }
     }
 
     ?>

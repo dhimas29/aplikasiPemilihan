@@ -36,42 +36,44 @@
                             <i class="right fas fa-angle-right"></i>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item ">
-                            <a href="?folder=user&page=user&actions=tampil" class="nav-link <?php if ($page == 'user') echo 'active' ?> ">
-                                <i class="<?php if ($page == 'user') {
-                                                echo 'fa';
-                                            } else {
-                                                echo 'far';
-                                            }; ?>  fa-circle nav-icon"></i>
-                                <p>Data User</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item ">
-                            <a href="?folder=kelas&page=kelas&actions=tampil" class="nav-link <?php if ($page == 'kelas') echo 'active' ?> ">
-                                <i class="<?php if ($page == 'kelas') {
-                                                echo 'fa';
-                                            } else {
-                                                echo 'far';
-                                            }; ?>  fa-circle nav-icon"></i>
-                                <p>Data Kelas</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item ">
-                            <a href="?folder=guru&page=guru&actions=tampil" class="nav-link <?php if ($page == 'guru') echo 'active' ?> ">
-                                <i class="<?php if ($page == 'guru') {
-                                                echo 'fa';
-                                            } else {
-                                                echo 'far';
-                                            }; ?>  fa-circle nav-icon"></i>
-                                <p>Data Guru</p>
-                            </a>
-                        </li>
-                    </ul>
+                    <?php if ($_SESSION['level'] == 'Admin') : ?>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                                <a href="?folder=user&page=user&actions=tampil" class="nav-link <?php if ($page == 'user') echo 'active' ?> ">
+                                    <i class="<?php if ($page == 'user') {
+                                                    echo 'fa';
+                                                } else {
+                                                    echo 'far';
+                                                }; ?>  fa-circle nav-icon"></i>
+                                    <p>Data User</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                                <a href="?folder=kelas&page=kelas&actions=tampil" class="nav-link <?php if ($page == 'kelas') echo 'active' ?> ">
+                                    <i class="<?php if ($page == 'kelas') {
+                                                    echo 'fa';
+                                                } else {
+                                                    echo 'far';
+                                                }; ?>  fa-circle nav-icon"></i>
+                                    <p>Data Kelas</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item ">
+                                <a href="?folder=guru&page=guru&actions=tampil" class="nav-link <?php if ($page == 'guru') echo 'active' ?> ">
+                                    <i class="<?php if ($page == 'guru') {
+                                                    echo 'fa';
+                                                } else {
+                                                    echo 'far';
+                                                }; ?>  fa-circle nav-icon"></i>
+                                    <p>Data Guru</p>
+                                </a>
+                            </li>
+                        </ul>
+                    <?php endif; ?>
                     <ul class="nav nav-treeview">
                         <li class="nav-item ">
                             <a href="?folder=siswa&page=siswa&actions=tampil" class="nav-link <?php if ($page == 'siswa') echo 'active' ?>">
@@ -97,22 +99,34 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item user-panel">
-                    <a href="?folder=seleksi&page=seleksi&actions=tampil" class="nav-link <?php if ($page == 'seleksi') echo 'active' ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Seleksi
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item user-panel">
-                    <a href="?folder=perhitungan&page=perhitungan&actions=tampil" class="nav-link <?php if ($page == 'perhitungan') echo 'active' ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>
-                            Perhitungan
-                        </p>
-                    </a>
-                </li>
+                <?php if ($_SESSION['level'] == 'Guru') : ?>
+                    <li class="nav-item user-panel">
+                        <a href="?folder=lomba&page=lomba&actions=tampil" class="nav-link <?php if ($page == 'lomba') echo 'active' ?>">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Lomba
+                            </p>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($_SESSION['level'] == 'Admin') : ?>
+                    <li class="nav-item user-panel">
+                        <a href="?folder=seleksi&page=seleksi&actions=tampil" class="nav-link <?php if ($page == 'seleksi') echo 'active' ?>">
+                            <i class="nav-icon fas fa-signal"></i>
+                            <p>
+                                Seleksi
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item user-panel">
+                        <a href="?folder=perhitungan&page=perhitungan&actions=tampil" class="nav-link <?php if ($page == 'perhitungan') echo 'active' ?>">
+                            <i class="nav-icon fas fa-calculator"></i>
+                            <p>
+                                Perhitungan
+                            </p>
+                        </a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

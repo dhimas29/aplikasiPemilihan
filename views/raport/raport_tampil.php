@@ -45,24 +45,47 @@
                                 <tbody>
                                     <?php
                                     $nomor = 1;
-                                    foreach ($koneksi->query('select *,tbl_raport.id_siswa as idraport,sum(tbl_raport.nilai_raport) as total_raport,count(tbl_raport.id) as conbagi from tbl_raport
+                                    if ($_SESSION['level'] == "Guru") {
+                                        $kelasCek = $koneksi->query("select * from tbl_guru where id_user='$_SESSION[id]'")->fetch();
+                                        foreach ($koneksi->query('select *,tbl_raport.id_siswa as idraport,sum(tbl_raport.nilai_raport) as total_raport,count(tbl_raport.id) as conbagi from tbl_raport
                                     join tbl_siswa on tbl_siswa.id = tbl_raport.id_siswa
                                     join tbl_users on tbl_users.id = tbl_siswa.id_user
                                     join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                    where tbl_siswa.id_kelas = ' . $kelasCek['id_kelas'] . '
                                     group by id_siswa
                                     order by concat asc,username asc') as $key => $value) { ?>
-                                        <tr>
-                                            <td><?= $nomor++; ?></td>
-                                            <td><?= $value['username']; ?></td>
-                                            <td><?= $value['nama']; ?></td>
-                                            <td><?= number_format($value['total_raport'] / $value['conbagi'], 2); ?></td>
-                                            <td>
-                                                <a href="?folder=raport&page=raport&actions=detail&id=<?= $value['idraport'] ?>" class="btn btn-sm btn-info btn-block rounded">Detail</a>
-                                                <!-- |
+                                            <tr>
+                                                <td><?= $nomor++; ?></td>
+                                                <td><?= $value['username']; ?></td>
+                                                <td><?= $value['nama']; ?></td>
+                                                <td><?= number_format($value['total_raport'] / $value['conbagi'], 2); ?></td>
+                                                <td>
+                                                    <a href="?folder=raport&page=raport&actions=detail&id=<?= $value['idraport'] ?>" class="btn btn-sm btn-info btn-block rounded">Detail</a>
+                                                    <!-- |
                                                 <a onclick="return deleteSwal(<?= $value['id_user'] ?>,'<?= $namaTabel ?>','raport')" class="btn btn-sm btn-danger">Delete</a> -->
-                                            </td>
-                                        </tr>
-                                    <?php }; ?>
+                                                </td>
+                                            </tr>
+                                        <?php }
+                                    } else {
+                                        foreach ($koneksi->query('select *,tbl_raport.id_siswa as idraport,sum(tbl_raport.nilai_raport) as total_raport,count(tbl_raport.id) as conbagi from tbl_raport
+                                        join tbl_siswa on tbl_siswa.id = tbl_raport.id_siswa
+                                        join tbl_users on tbl_users.id = tbl_siswa.id_user
+                                        join tbl_kelas on tbl_kelas.id = tbl_siswa.id_kelas
+                                        group by id_siswa
+                                        order by concat asc,username asc') as $key => $value) { ?>
+                                            <tr>
+                                                <td><?= $nomor++; ?></td>
+                                                <td><?= $value['username']; ?></td>
+                                                <td><?= $value['nama']; ?></td>
+                                                <td><?= number_format($value['total_raport'] / $value['conbagi'], 2); ?></td>
+                                                <td>
+                                                    <a href="?folder=raport&page=raport&actions=detail&id=<?= $value['idraport'] ?>" class="btn btn-sm btn-info btn-block rounded">Detail</a>
+                                                    <!-- |
+                                                    <a onclick="return deleteSwal(<?= $value['id_user'] ?>,'<?= $namaTabel ?>','raport')" class="btn btn-sm btn-danger">Delete</a> -->
+                                                </td>
+                                            </tr>
+                                    <?php }
+                                    } ?>
                                 </tbody>
                             </table>
                         </div>

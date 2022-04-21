@@ -24,7 +24,10 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Seleksi</h3>
+                            <h3 class="card-title mt-2">Seleksi</h3>
+                            <a data-toggle="modal" data-target="#infoNilai">
+                                <h3 class="card-title float-right btn-info btn btn-sm">! Info Pemetaan Nilai</h3>
+                            </a>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -181,4 +184,51 @@
         <!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+</div>
+<!-- Info Nilai -->
+<div class="modal fade" id="infoNilai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Info Pemetaan Nilai</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">x</button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Keterangan</th>
+                            <th>Bobot Nilai</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0 - 59</td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>60 - 69</td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>70 - 79</td>
+                            <td>3</td>
+                        </tr>
+                        <tr>
+                            <td>80 - 89</td>
+                            <td>4</td>
+                        </tr>
+                        <tr>
+                            <td>90 - 100</td>
+                            <td>5</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -97,7 +97,40 @@
             "autoWidth": false,
             "responsive": true
         })
+        $('#example8').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "responsive": true
+        })
     });
+
+    function partisipasi(id, id_user, namaTabel, ket, kode_seleksi) {
+        $.ajax({
+            url: "proses/proses_edit.php",
+            type: "POST",
+            data: {
+                id: id,
+                id_user: id_user,
+                namaTabel: namaTabel,
+                ket: ket,
+                kode_seleksi: kode_seleksi
+            },
+            cache: false,
+            success: function(result) {
+                Swal.fire({
+                    title: 'Ubah Data!',
+                    text: 'Berhasil Ubah Data.',
+                    icon: 'success'
+                }).then((result) => {
+                    window.location.href = "?folder=lomba&page=lomba&actions=tambah&kode_seleksi=" + kode_seleksi
+                })
+            }
+        })
+    }
 
     function deleteSwal(id, namaTabel, page) {
         Swal.fire({
